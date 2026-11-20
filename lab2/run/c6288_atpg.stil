@@ -1,0 +1,215 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX(R)  V-2023.12-SP1-i20240116_181150 STIL output";
+   Date "Fri Nov 20 14:22:30 2026";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT      14475 *}
+      Ann {*   detected_by_simulation         DS     (14475) *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD         85 *}
+      Ann {*   undetectable-tied              UT        (68) *}
+      Ann {*   undetectable-redundant         UR        (17) *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                             14560 *}
+      Ann {* test coverage                           100.00% *}
+      Ann {* fault coverage                           99.42% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                          36 *}
+      Ann {*     #basic_scan patterns                    36 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+      Ann {* top_module_name = c6288 *}
+      Ann {* Unified STIL Flow *}
+      Ann {* min_n_shifts = 1 *}
+      Ann {* serial_flag = 0 *}
+      Ann {* PSDF = NO_PSD_FILE *}
+      Ann {* PSDS = 0 *}
+      Ann {* PSDA = #36#0#0/0 *}
+   }
+}
+Signals {
+   "datai(31)" In; "datai(30)" In; "datai(29)" In; "datai(28)" In; "datai(27)" In;
+   "datai(26)" In; "datai(25)" In; "datai(24)" In; "datai(23)" In; "datai(22)" In;
+   "datai(21)" In; "datai(20)" In; "datai(19)" In; "datai(18)" In; "datai(17)" In;
+   "datai(16)" In; "datai(15)" In; "datai(14)" In; "datai(13)" In; "datai(12)" In;
+   "datai(11)" In; "datai(10)" In; "datai(9)" In; "datai(8)" In; "datai(7)" In; "datai(6)" In;
+   "datai(5)" In; "datai(4)" In; "datai(3)" In; "datai(2)" In; "datai(1)" In; "datai(0)" In;
+   "datao(31)" Out; "datao(30)" Out; "datao(29)" Out; "datao(28)" Out; "datao(27)" Out;
+   "datao(26)" Out; "datao(25)" Out; "datao(24)" Out; "datao(23)" Out; "datao(22)" Out;
+   "datao(21)" Out; "datao(20)" Out; "datao(19)" Out; "datao(18)" Out; "datao(17)" Out;
+   "datao(16)" Out; "datao(15)" Out; "datao(14)" Out; "datao(13)" Out; "datao(12)" Out;
+   "datao(11)" Out; "datao(10)" Out; "datao(9)" Out; "datao(8)" Out; "datao(7)" Out;
+   "datao(6)" Out; "datao(5)" Out; "datao(4)" Out; "datao(3)" Out; "datao(2)" Out;
+   "datao(1)" Out; "datao(0)" Out;
+}
+SignalGroups {
+   "_default_In_Timing_" = '"datai(31)" + "datai(30)" + "datai(29)" + "datai(28)"
+   + "datai(27)" + "datai(26)" + "datai(25)" + "datai(24)" + "datai(23)" + "datai(22)"
+   + "datai(21)" + "datai(20)" + "datai(19)" + "datai(18)" + "datai(17)" + "datai(16)"
+   + "datai(15)" + "datai(14)" + "datai(13)" + "datai(12)" + "datai(11)" + "datai(10)"
+   + "datai(9)" + "datai(8)" + "datai(7)" + "datai(6)" + "datai(5)" + "datai(4)" + "datai(3)"
+   + "datai(2)" + "datai(1)" + "datai(0)"'; // #signals=32
+   "_pi" = '"datai(31)" + "datai(30)" + "datai(29)" + "datai(28)" + "datai(27)" + "datai(26)"
+   + "datai(25)" + "datai(24)" + "datai(23)" + "datai(22)" + "datai(21)" + "datai(20)"
+   + "datai(19)" + "datai(18)" + "datai(17)" + "datai(16)" + "datai(15)" + "datai(14)"
+   + "datai(13)" + "datai(12)" + "datai(11)" + "datai(10)" + "datai(9)" + "datai(8)"
+   + "datai(7)" + "datai(6)" + "datai(5)" + "datai(4)" + "datai(3)" + "datai(2)" + "datai(1)"
+   + "datai(0)"'; // #signals=32
+   "_in" = '"datai(31)" + "datai(30)" + "datai(29)" + "datai(28)" + "datai(27)" + "datai(26)"
+   + "datai(25)" + "datai(24)" + "datai(23)" + "datai(22)" + "datai(21)" + "datai(20)"
+   + "datai(19)" + "datai(18)" + "datai(17)" + "datai(16)" + "datai(15)" + "datai(14)"
+   + "datai(13)" + "datai(12)" + "datai(11)" + "datai(10)" + "datai(9)" + "datai(8)"
+   + "datai(7)" + "datai(6)" + "datai(5)" + "datai(4)" + "datai(3)" + "datai(2)" + "datai(1)"
+   + "datai(0)"'; // #signals=32
+   "_default_Out_Timing_" = '"datao(31)" + "datao(30)" + "datao(29)" + "datao(28)"
+   + "datao(27)" + "datao(26)" + "datao(25)" + "datao(24)" + "datao(23)" + "datao(22)"
+   + "datao(21)" + "datao(20)" + "datao(19)" + "datao(18)" + "datao(17)" + "datao(16)"
+   + "datao(15)" + "datao(14)" + "datao(13)" + "datao(12)" + "datao(11)" + "datao(10)"
+   + "datao(9)" + "datao(8)" + "datao(7)" + "datao(6)" + "datao(5)" + "datao(4)" + "datao(3)"
+   + "datao(2)" + "datao(1)" + "datao(0)"'; // #signals=32
+   "_po" = '"datao(31)" + "datao(30)" + "datao(29)" + "datao(28)" + "datao(27)" + "datao(26)"
+   + "datao(25)" + "datao(24)" + "datao(23)" + "datao(22)" + "datao(21)" + "datao(20)"
+   + "datao(19)" + "datao(18)" + "datao(17)" + "datao(16)" + "datao(15)" + "datao(14)"
+   + "datao(13)" + "datao(12)" + "datao(11)" + "datao(10)" + "datao(9)" + "datao(8)"
+   + "datao(7)" + "datao(6)" + "datao(5)" + "datao(4)" + "datao(3)" + "datao(2)" + "datao(1)"
+   + "datao(0)"'; // #signals=32
+   "_out" = '"datao(31)" + "datao(30)" + "datao(29)" + "datao(28)" + "datao(27)" + "datao(26)"
+   + "datao(25)" + "datao(24)" + "datao(23)" + "datao(22)" + "datao(21)" + "datao(20)"
+   + "datao(19)" + "datao(18)" + "datao(17)" + "datao(16)" + "datao(15)" + "datao(14)"
+   + "datao(13)" + "datao(12)" + "datao(11)" + "datao(10)" + "datao(9)" + "datao(8)"
+   + "datao(7)" + "datao(6)" + "datao(5)" + "datao(4)" + "datao(3)" + "datao(2)" + "datao(1)"
+   + "datao(0)"'; // #signals=32
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' X; } }
+         "_default_Out_Timing_" { H { '0ns' X; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' X; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' X; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "capture" {
+      W "_default_WFT_";
+      C { "_po"=\r32 X ; }
+      "forcePI": V { "_pi"=\r32 # ; }
+      "measurePO": V { "_po"=\r32 # ; }
+   }
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}
+Pattern "_pattern_" {
+   W "_default_WFT_";
+   "precondition all Signals": C { "_pi"=\r32 0 ; "_po"=\r32 X ; }
+   "pattern 0": Call "capture" { 
+      "_pi"=10111100110101011010111011011001; "_po"=HLLLLHHHHLLLHHLLLLHHHHHHHHHLLHLH; }
+   "pattern 1": Call "capture" { 
+      "_pi"=11111110001111011111110001100111; "_po"=HLLLLLHLHLHHHHHLLLLHLLLHHLLHLHHL; }
+   "pattern 2": Call "capture" { 
+      "_pi"=00110100110001000101001010100111; "_po"=LLLHHHLHLHHLLLLHLLLLLLLHHHHHHLLL; }
+   "pattern 3": Call "capture" { 
+      "_pi"=10011110111111011000000011011000; "_po"=HLLHHHHLLHLLLLLHLHLLHHLLLLHLHLLL; }
+   "pattern 4": Call "capture" { 
+      "_pi"=11100011110110111100001101011101; "_po"=HLHLHLLHLHHHHHHHHLHLHLHLLLLLLHHL; }
+   "pattern 5": Call "capture" { 
+      "_pi"=00000001100110010011110101111011; "_po"=LLLLLLLLLHLHHHLHHLHHLLLHHLHLLLHL; }
+   "pattern 6": Call "capture" { 
+      "_pi"=10111110110001110100001101111011; "_po"=LHLHHHLHLHLHLLHHLHLLHHHHHLHLLLHH; }
+   "pattern 7": Call "capture" { 
+      "_pi"=00110011101111001110010100010111; "_po"=LLHLHLLLLLLLHHLLHLLHLHLLLLLHHHLL; }
+   "pattern 8": Call "capture" { 
+      "_pi"=11111001101100101110100111111110; "_po"=HLLHLLHHHLLHLHLHHHHHLHLHLHHLLHLL; }
+   "pattern 9": Call "capture" { 
+      "_pi"=01110000001010111010000111000010; "_po"=LHHLLLHLHLHLHLHHHLHHLHHHHHHLHHLL; }
+   "pattern 10": Call "capture" { 
+      "_pi"=10000110000001111010111111000100; "_po"=HLHLHLHHHHHHHHHHHHLLLLLHHHHHHLLL; }
+   "pattern 11": Call "capture" { 
+      "_pi"=11110011000101101111110111110110; "_po"=HLLLHHHLHHLLHHHHHHHHHHLHHLHHLHLL; }
+   "pattern 12": Call "capture" { 
+      "_pi"=10000000011011111010001101100010; "_po"=HLHLLLHHLLHLHLLHHLLLLLLLLLHLLLLH; }
+   "pattern 13": Call "capture" { 
+      "_pi"=10001000000001010111101011001100; "_po"=LHHHHHLLHLLHLHLLLHHHHLLLLLLLLHLL; }
+   "pattern 14": Call "capture" { 
+      "_pi"=00000001111000111110101111111101; "_po"=LLLLLLLHLLHHLLLLLLLLLLLHHLHLHLHL; }
+   "pattern 15": Call "capture" { 
+      "_pi"=00111000000000111010110010101010; "_po"=LLHHLLHHHLLLHLLLHLLLHHHHHHHHHHLL; }
+   "pattern 16": Call "capture" { 
+      "_pi"=00000001011111011010110111110101; "_po"=LLLLLLLHLLLLHHLLLLLLLLHHLHLLLLHL; }
+   "pattern 17": Call "capture" { 
+      "_pi"=00000000001110101111101100101111; "_po"=LLLLLLLLLLHLLHLLLLLLLLLLLLLHHLLH; }
+   "pattern 18": Call "capture" { 
+      "_pi"=11000000000000111111001010101010; "_po"=HLHHLHHHHHHHHHLLLLHHHHHHHHHHHHLL; }
+   "pattern 19": Call "capture" { 
+      "_pi"=11111111110100000011111111111011; "_po"=LLHLLLLLLLLLHHHHLHHHHHHLLHLHLLLL; }
+   "pattern 20": Call "capture" { 
+      "_pi"=11110001100100111011111110010001; "_po"=HHLLHLHLHLLHHHLHLLHLLHLHLLHHLHLH; }
+   "pattern 21": Call "capture" { 
+      "_pi"=11111110100000001011111111110001; "_po"=HHLLLLLHHHLHLHHLHHHLHLHHLLLLLLLL; }
+   "pattern 22": Call "capture" { 
+      "_pi"=11111111101000011011111111010111; "_po"=HHLLLLLLLHLLLLLHHLHLLLLHHHLHHHLH; }
+   "pattern 23": Call "capture" { 
+      "_pi"=00000000011100111101111110110101; "_po"=LLLLLLLLLHLHHHHHHHHHHHHHHHLHLLHL; }
+   "pattern 24": Call "capture" { 
+      "_pi"=11100000010111100111110111111111; "_po"=LHLLHHLLLHLHLLLHHHHLLHHHHLLHHHLH; }
+   "pattern 25": Call "capture" { 
+      "_pi"=00000001011011011001000011111011; "_po"=LLLLLLLHLHLHLHHHHHHHHHHHLHHHHLHL; }
+   "pattern 26": Call "capture" { 
+      "_pi"=10111111111100110011010000001011; "_po"=LLHHHHHLHHHHLLHLHLLLLHLLHLLHLHHL; }
+   "pattern 27": Call "capture" { 
+      "_pi"=11000011010111111101101010111110; "_po"=HLLLHLHLLHLHHLHLLHLHLLHHLHLHHHLH; }
+   "pattern 28": Call "capture" { 
+      "_pi"=11111111100111111101101111110110; "_po"=HLHLLHLLLHHHLHHLHHLHHHLLHLHHLHLH; }
+   "pattern 29": Call "capture" { 
+      "_pi"=00000110010110010111111110101101; "_po"=LLLLLLHLHHLHLLLLHHHHHHLHHLHHLHLH; }
+   "pattern 30": Call "capture" { 
+      "_pi"=00010111111110110000100111101011; "_po"=LLLLLLLHLHLHLLHHHLLHLLLHLLHHHHHL; }
+   "pattern 31": Call "capture" { 
+      "_pi"=10011010000001100100111110010101; "_po"=LHLLLHLLHLHLHLHHHLHLHHHHHHHHHHLL; }
+   "pattern 32": Call "capture" { 
+      "_pi"=00000011011011111101010111101011; "_po"=LLLLLLHLLHLLHLLLLLLLLHHHHHHHLLHH; }
+   "pattern 33": Call "capture" { 
+      "_pi"=00000000000001111011011011011011; "_po"=LLLLLLLLLLLLLHHLHHHHHHHHHHHHHHHL; }
+   "pattern 34": Call "capture" { 
+      "_pi"=00000000000010110110111001000110; "_po"=LLLLLLLLLLLLLHHHHHHHHHHHHHHHLLLH; }
+   "pattern 35": Call "capture" { 
+      "_pi"=11111101100111011111111101000011; "_po"=HLLLLLHLHHLLLLHHHHLHHHHLHLHHLLHL; }
+}
+
+// Patterns reference 72 V statements, generating 72 test cycles

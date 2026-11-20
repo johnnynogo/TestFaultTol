@@ -1,0 +1,29 @@
+# Fault dictionary - design: ex1 - list: fault_list_stuckat_collapsed.txt
+# Golden POs per pattern (P0..P3): 00 10 01 10
+# sa  code  site                     faulty POs per pattern     detected_by   verdict
+sa0  NC   A                        00 00 10 10                1,2           DETECTED
+sa1  NC   A                        10 10 01 01                0,3           DETECTED
+sa0  NC   B                        00 10 10 00                2,3           DETECTED
+sa1  NC   B                        10 01 01 10                0,1           DETECTED
+sa0  NC   U1/O                     01 01 01 01                0,1,3         DETECTED
+sa1  NC   U1/I2                    00 01 01 10                1             DETECTED
+sa1  NC   U1/I1                    00 10 01 01                3             DETECTED
+sa1  NC   U1/O                     00 10 10 10                2             DETECTED
+sa1  NC   S                        10 10 11 10                0,2           DETECTED
+sa0  NC   S                        00 00 01 00                1,3           DETECTED
+sa1  NC   U3/I2                    10 10 01 10                0             DETECTED
+sa1  NC   U3/I1                    00 10 11 10                2             DETECTED
+sa1  NC   U3/O                     00 10 01 00                3             DETECTED
+sa1  NC   U2/I2                    00 10 11 10                2             DETECTED
+sa1  NC   U2/I1                    10 10 01 10                0             DETECTED
+sa1  NC   U2/O                     00 00 01 10                1             DETECTED
+sa0  NC   C                        00 10 00 10                2             DETECTED
+sa1  NC   U5/I2                    00 10 01 10                -             NOT_DETECTED
+sa1  NC   U5/I1                    00 10 01 10                -             NOT_DETECTED
+sa1  NC   C                        01 11 01 11                0,1,3         DETECTED
+#
+# Faults simulated : 20
+# Detected         : 18
+# Not detected     : 2
+# Injection failed : 0   (excluded from the coverage: fix them and rerun)
+# Fault coverage   : 90.00%   (= detected / (detected + not detected))
