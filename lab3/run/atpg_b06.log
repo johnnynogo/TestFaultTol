@@ -1,0 +1,272 @@
+
+                             Synopsys TestMAX (TM) 
+                                  TetraMAX (R)
+
+               Version V-2023.12-SP1 for linux64 - Jan 16, 2024  
+
+                    Copyright (c) 1996 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+
+ Tcl mode is on by default. Use -notcl to run in native mode.
+ Executing startup file "/usr/local/synopsys/syn/V-2023.12-SP1/admin/setup/tmaxtcl.rc".
+read_netlist ../pdt2002.v -format verilog -insensitive -library
+ Begin reading netlist ( ../pdt2002.v )...
+ End parsing Verilog file ../pdt2002.v with 0 errors.
+ End reading netlist: #modules=35, top=logic_1, #lines=291, CPU_time=0.00 sec, Memory=0MB
+read_netlist ../b06_scan.v -format verilog -insensitive
+ Begin reading netlist ( ../b06_scan.v )...
+ End parsing Verilog file ../b06_scan.v with 0 errors.
+ End reading netlist: #modules=1, top=b06, #lines=81, CPU_time=0.00 sec, Memory=0MB
+run_build_model b06
+ ------------------------------------------------------------------------------
+ Begin build model for topcut = b06 ...
+ ------------------------------------------------------------------------------
+ There were 18 primitives and 0 faultable pins removed during model optimizations
+ End build model: #primitives=80, CPU_time=0.00 sec, Memory=0MB
+ ------------------------------------------------------------------------------
+ Begin learning analyses...
+ End learning analyses, total learning CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+set_drc ../b06_scan.spf
+run_drc
+ ------------------------------------------------------------------------------
+ Begin scan design rules checking...
+ ------------------------------------------------------------------------------
+ Begin reading test protocol file ../b06_scan.spf...
+ End parsing STIL file ../b06_scan.spf with 0 errors.
+ Test protocol file reading completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin simulating test protocol procedures...
+ Test protocol simulation completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin scan chain operation checking...
+ Chain 1 successfully traced with 9 scan_cells.
+ Scan chain operation checking completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin clock rules checking...
+ Clock rules checking completed, CPU time=0.00 sec.
+ Performing clock grouping analysis for 2 clocks.
+ Clock grouping results: #pairs=0, #groups=0, #serial_pairs=0, #disturbed_pairs=0, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin tracing connection cones...
+ Tracing connection cones completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin nonscan rules checking...
+ Nonscan cell summary: #DFF=0  #DLAT=0  #RAM_outs=0  tla_usage_type=none
+ Nonscan rules checking completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin DRC dependent learning...
+ Fast-sequential depth results: control=0(0), observe=0(0), detect=0(0), CPU time=0.00 sec
+ DRC dependent learning completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ Begin set operation for load unload constant latches...
+ Set operation for load unload constant latches completed, CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+ DRC Summary Report
+ ------------------------------------------------------------------------------
+ No violations occurred during DRC process.
+ Design rules checking was successful, total CPU time=0.00 sec.
+ ------------------------------------------------------------------------------
+report_scan_chains
+ chain             group  length  input_pin           output_pin
+ ----------------  -----  ------  ------------------  ------------------
+ 1                 sg0         9  test_si             uscite[2]         
+report_scan_cells -all
+ chain              cell  type     inv   gate#  instance_name (type)
+ -----------------  ----  -------  ---  ------  ------------------------------------
+ 1                     0  MASTER    NN      67  \uscite_reg[2] (Flip_Flop_D_reset_scan)
+ 1                     1  MASTER    NN      69  \uscite_reg[1] (Flip_Flop_D_reset_scan)
+ 1                     2  MASTER    NN      66  \state_reg[2] (Flip_Flop_D_reset_scan)
+ 1                     3  MASTER    NN      68  \state_reg[1] (Flip_Flop_D_reset_scan)
+ 1                     4  MASTER    NN      65  \state_reg[0] (Flip_Flop_D_reset_scan)
+ 1                     5  MASTER    NN      72  enable_count_reg (Flip_Flop_D_reset_scan)
+ 1                     6  MASTER    NN      70  \cc_mux_reg[2] (Flip_Flop_D_reset_scan)
+ 1                     7  MASTER    NN      71  \cc_mux_reg[1] (Flip_Flop_D_reset_scan)
+ 1                     8  MASTER    NN      73  ackout_reg (Flip_Flop_D_reset_scan)
+report_nonscan_cells -summary
+ Nonscan cell summary: #DFF=0  #DLAT=0  #RAM_outs=0  tla_usage_type=none
+set_faults -model stuck
+set_faults -summary verbose
+set_faults -fault_coverage
+ Warning: Unused gate deletion affects fault coverage calculation. (M245)
+add_faults -all
+ 432 faults were added to fault list.
+run_atpg -auto_compression
+ 
+ ATPG performed for stuck fault model using internal pattern source.
+ ----------------------------------------------------------
+ #patterns     #faults     #ATPG faults  test      process
+ stored     detect/active  red/au/abort  coverage  CPU time
+ ---------  -------------  ------------  --------  --------
+ Begin deterministic ATPG: #uncollapsed_faults=350, abort_limit=10...
+ 17            350      0         0/0/0   100.00%      0.00
+ 
+     Uncollapsed Stuck Fault Summary Report
+ -----------------------------------------------
+ fault class                     code   #faults
+ ------------------------------  ----  ---------
+ Detected                         DT        432
+   detected_by_simulation         DS       (350)
+   detected_by_implication        DI        (82)
+ Possibly detected                PT          0
+ Undetectable                     UD          0
+ ATPG untestable                  AU          0
+ Not detected                     ND          0
+ -----------------------------------------------
+ total faults                               432
+ test coverage                           100.00%
+ fault coverage                          100.00%
+ -----------------------------------------------
+            Pattern Summary Report
+ -----------------------------------------------
+ #internal patterns                          17
+     #basic_scan patterns                    17
+ -----------------------------------------------
+            CPU Usage Summary Report
+ -----------------------------------------------
+ Total CPU time                            0.00
+ -----------------------------------------------
+report_summaries
+     Uncollapsed Stuck Fault Summary Report
+ -----------------------------------------------
+ fault class                     code   #faults
+ ------------------------------  ----  ---------
+ Detected                         DT        432
+   detected_by_simulation         DS       (350)
+   detected_by_implication        DI        (82)
+ Possibly detected                PT          0
+ Undetectable                     UD          0
+ ATPG untestable                  AU          0
+ Not detected                     ND          0
+ -----------------------------------------------
+ total faults                               432
+ test coverage                           100.00%
+ fault coverage                          100.00%
+ -----------------------------------------------
+            Pattern Summary Report
+ -----------------------------------------------
+ #internal patterns                          17
+     #basic_scan patterns                    17
+ -----------------------------------------------
+report_patterns -all
+ Pattern 0 (basic_scan-chain_test)
+ Time 0: load 1 =          001100110
+ Time 1: force_all_pis =   000011
+ Time 2: measure_all_pos = 110000
+ Time 3: unload 1 =        001100110
+ Pattern 1 (basic_scan)
+ Time 0: load 1 =          011100000
+ Time 1: force_all_pis =   100110
+ Time 2: measure_all_pos = 000100
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        111100100
+ Pattern 2 (basic_scan)
+ Time 0: load 1 =          101110100
+ Time 1: force_all_pis =   000010
+ Time 2: measure_all_pos = 101000
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        000000000
+ Pattern 3 (basic_scan)
+ Time 0: load 1 =          010100010
+ Time 1: force_all_pis =   000110
+ Time 2: measure_all_pos = 010100
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        010111011
+ Pattern 4 (basic_scan)
+ Time 0: load 1 =          001001100
+ Time 1: force_all_pis =   100100
+ Time 2: measure_all_pos = 100010
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        001000110
+ Pattern 5 (basic_scan)
+ Time 0: load 1 =          110110011
+ Time 1: force_all_pis =   100110
+ Time 2: measure_all_pos = 011101
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        010110010
+ Pattern 6 (basic_scan)
+ Time 0: load 1 =          000011100
+ Time 1: force_all_pis =   100000
+ Time 2: measure_all_pos = 100010
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        000101111
+ Pattern 7 (basic_scan)
+ Time 0: load 1 =          111011111
+ Time 1: force_all_pis =   000110
+ Time 2: measure_all_pos = 111111
+ Time 3: pulse clocks  reset (2)
+ Time 4: unload 1 =        000000000
+ Pattern 8 (basic_scan)
+ Time 0: load 1 =          101011000
+ Time 1: force_all_pis =   000000
+ Time 2: measure_all_pos = 001010
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        010011011
+ Pattern 9 (basic_scan)
+ Time 0: load 1 =          100010001
+ Time 1: force_all_pis =   000000
+ Time 2: measure_all_pos = 001001
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        011011101
+ Pattern 10 (basic_scan)
+ Time 0: load 1 =          111000000
+ Time 1: force_all_pis =   000000
+ Time 2: measure_all_pos = 001100
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        111101101
+ Pattern 11 (basic_scan)
+ Time 0: load 1 =          110100100
+ Time 1: force_all_pis =   100110
+ Time 2: measure_all_pos = 101100
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        000100110
+ Pattern 12 (basic_scan)
+ Time 0: load 1 =          000000110
+ Time 1: force_all_pis =   100010
+ Time 2: measure_all_pos = 110000
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        010011011
+ Pattern 13 (basic_scan)
+ Time 0: load 1 =          101101010
+ Time 1: force_all_pis =   000100
+ Time 2: measure_all_pos = 011010
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        010010010
+ Pattern 14 (basic_scan)
+ Time 0: load 1 =          100001001
+ Time 1: force_all_pis =   000100
+ Time 2: measure_all_pos = 001011
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        010010010
+ Pattern 15 (basic_scan)
+ Time 0: load 1 =          100100001
+ Time 1: force_all_pis =   000000
+ Time 2: measure_all_pos = 001001
+ Time 3: pulse clocks  reset (2)
+ Time 4: unload 1 =        000000000
+ Pattern 16 (basic_scan)
+ Time 0: load 1 =          011010000
+ Time 1: force_all_pis =   100010
+ Time 2: measure_all_pos = 000100
+ Time 3: pulse clocks  clock (1)
+ Time 4: unload 1 =        001001111
+write_faults b06_atpg_faults.txt -all -uncollapsed -replace
+ Write faults completed: 432 faults were written into file "b06_atpg_faults.txt".
+write_patterns b06_atpg.stil -format stil -replace
+ Patterns written reference 55 V statements, generating 199 test cycles
+ End writing file 'b06_atpg.stil' with 17 patterns, File_size = 10773, CPU_time = 0.0 sec.
+quit
