@@ -1,0 +1,45 @@
+# Lab 3: Scan-Based ATPG and Scan Chain Insertion
+
+## Part A - A Full-Scan Design: b06
+
+### A.1 Trace the scan chain by hand
+    1. b06 contains 9 scan cells and 9 non-scan flip-flops.
+    2. done on goodnotes:
+        78: ackout_reg
+        74: cc_mux_reg[1]
+        72: cc_mux_reg[2] 
+        76: enable_count_reg
+        63: state_reg[0]
+        69: state_reg[1]
+        65: state_reg[2]
+        71: uscite_reg[1]
+        67: uscite_reg[2]
+      scan-out port is uscite[2] that the cell uscite_reg[2] drives
+      It is a functional output - as we see in the .spf file that '_so' is 'uscite[2]'
+    3. uscite_reg[2] = pos 0
+       uscite_reg[1] = pos 1
+       and so on.
+    4. Chain Name = ScanChain
+       ScanLength=9
+       ScanIn=test_si
+       ScanOut=uscite[2]
+       ScanCells order is ordered like above - scan chain from test_si to uscite[2]
+    5. During 'load_unload' test_se takes '1' during the part 'pre-shift vector' (V)
+       clock, test_si and uscite[2] changes every cycle. What is on the left of the equal sign is what changes, not the '#' and P0, those are the values
+       We see on 'all_inputs' of each capture procedure that test_se (the LSB position) that test_se is set to N (unknown), thus not forced.
+    6. Calculated on paper: faults = 432
+
+### A.2 Compose 'atpg_b06.tcl'
+    check the .tcl file. 
+    No errors in log; One chain traced with 9 scan-cells; Order and position does coincide with drawing; No non-scan cell indeed reported; Indeed 432 faults.
+
+### A.3 Basic-scan ATPG on a full-scan design
+    I think test coverage close to 100%
+    TAT = (N+1) * L+N, where L=9 -> TAT = 10N + 9
+    Table filled on paper
+
+### Q.A.3
+    1. The ATPG now works because the have the scan flip-flops
+    2. DI: . There are a total of 82 DI's. They are all on the flipflop pins, in addition to U3/O, U3/I1
+    3. Time 0: load 1 = 001100110
+    4. 
