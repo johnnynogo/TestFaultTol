@@ -3,11 +3,8 @@
 ## Part A - A Full-Scan Design: b06
 
 ### A.1 Trace the scan chain by hand
-    1. b06 contains 9 scan cells and 9 non-scan flip-flops.
-    2. done on goodnotes:
-        78: ackout_reg
-        74: cc_mux_reg[1]
-        72: cc_mux_reg[2] 
+    1. Both greps give 9, first gives how many scan=9, second one counts all FFs=9, thus 0 non-scan FFs.
+    2. 
         76: enable_count_reg
         63: state_reg[0]
         69: state_reg[1]
@@ -18,14 +15,14 @@
       It is a functional output - as we see in the .spf file that '_so' is 'uscite[2]'
     3. uscite_reg[2] = pos 0
        uscite_reg[1] = pos 1
-       and so on.
-    4. Chain Name = ScanChain
+       and so on following the list in (2) upwards. 
+    4. Chain Name = 1
        ScanLength=9
        ScanIn=test_si
        ScanOut=uscite[2]
        ScanCells order is ordered like above - scan chain from test_si to uscite[2]
-    5. During 'load_unload' test_se takes '1' during the part 'pre-shift vector' (V)
-       clock, test_si and uscite[2] changes every cycle. What is on the left of the equal sign is what changes, not the '#' and P0, those are the values
+    5. During 'load_unload' test_se takes '1' during the part 'pre-shift vector' (V).
+       clock, test_si and uscite[2] changes every cycle.
        We see on 'all_inputs' of each capture procedure that test_se (the LSB position) that test_se is set to N (unknown), thus not forced.
     6. Calculated on paper: faults = 432
 
@@ -39,7 +36,41 @@
     Table filled on paper
 
 ### Q.A.3
-    1. The ATPG now works because the have the scan flip-flops
-    2. DI: . There are a total of 82 DI's. They are all on the flipflop pins, in addition to U3/O, U3/I1
-    3. Time 0: load 1 = 001100110
-    4. 
+    1. The ATPG now works because the have the scan flip-flops - every FF now has a PPI that one can load and a PPO that one can read from through the chain. ATPG now only has to solve combinational logic
+    2. DI: a fault on the scan path that the chain test itself would reveal so TestMAX counts it as detected without simulating it on any ATPG pattern. There are a total of 82 DI's. They are all on the flipflop pins, in addition to U3/O, U3/I1. These faults sit on the scan path, so if one were present the chain test would already fail, which means they're certain to be detected without any ATPG pattern.
+    3. Time 0: load 1 = 001100110, no clock is pulsed, we see one clock pulse on pattern 1. It is the same as in slide 36 of slide set 6 - it is a scan chain test - the sequence is shifted to check the chain itself, not the logic. 
+    4. Pattern 1 (basic_scan)
+       Time 0: load 1 = 011100000         - "serially upload the PPI values (scan-in, test mode)"
+       Time 1: force_all_pis = 100110     - "apply the PI values"
+       Time 2: measure_all_pos = 000100   - "observe the PO values"
+       Time 3: pulse clocks  clock (1)    - "clock the circuit ("capture", normal mode)"
+       Time 4: unload 1 = 111100100       - "serially download and observe the PPO values (scan-out)"
+       POs must be measured before clock because 'capture' pulse will change the FFs, which makes the outputs driven - measured values will in that case not belong to the pattern.
+    5. V is a tester cycle. 'load_unload' has one pre-shift cycle (sets test_se=1) - for 17 patterns that is 18 calls, where the last one is unload. 
+       'test_setup' has two extra V's (cycles).
+
+## Part B - Controlling and Observing Scan Cells: Cell Constraints
+
+### B.1 Predict
+    1. Going backwards from state_reg[0] - NAND U21 - NAND U22 (AND3 U39 also drives U38) - NAND U23 are the gates that only drives D.
+       We have 3 gates with 3 I/O each = 9, including the D we have total of 10 pins. TOTAL=20. This is a lower bound, could be more faults further back. 
+    2. X costs most. With 0, cell holds 0, lose only faults that needs state[0]=1, v.v. With X we cant use any value and it will also propagate. 
+       X costs more than OX (in OX you load the cell normally, but whatever is captured on D in unknown) because Q of statereg drives more gates, OX only loses its small region that drives D. 
+    3. 0X is close to X+OX. XX is less than X+OX, OX losses are included in X
+    4. Many more faults are lost, because state_reg[2:0] is the whole state of the FSM, and almost all the logic depends on it (for control) or feeds it (for observation).
+
+
+### B.2 Two constraints by hand
+Checkpoint: previously had 432 DT, now have 408, predicted at least decrease 20 - correct.
+            all the gates listed is in the other list and indeed in AN. 
+            Lost but not predicted: 
+                - 'sa1 \state_reg[0]/RESET': With SE stuck at 1, the cell takes SI instead of D during capture. The only place that error shows up is this cell's captured value, which OX hides. The chain test doesn't catch it either, because SE = 1 during shift anyway.
+                - 'sa1 \state_reg[0]/SE': same as above
+                - 'sa0 U43/I2': U43's output does fan out (via n23 to U38), so you rightly left it out. But to excite this fault, the state must be state = 010, and in that state n4 = 0, which blocks U38. So the only open path left is through U21 to state_reg[0].
+                - 'sa0 U42/I3': same as above.
+
+
+### B.3 All the settings with a script
+
+
+### B.4  Why one fault is not detected
